@@ -1,5 +1,6 @@
 ﻿using NameValuePairs.Core.Constraints;
 using NameValuePairs.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -69,12 +70,17 @@ namespace NameValuePairs.Repositories
             return PrepareFilterQuery(setting).ToList();
         }
 
+        public IList<NameValuePair> SortBy(FilterSetting setting, Func<NameValuePair, string> command)
+        {
+            return PrepareFilterQuery(setting).OrderBy(command).ToList();
+        }
+
         /// <summary>
         /// List filtered NameValuePairs sorted by name
         /// </summary>
         public IList<NameValuePair> SortByName(FilterSetting setting = null)
         {
-            return PrepareFilterQuery(setting).OrderBy(x => x.Name).ToList();
+            return SortBy(setting, (NameValuePair x) => x.Name);
         }
 
         /// <summary>
@@ -82,7 +88,7 @@ namespace NameValuePairs.Repositories
         /// </summary>
         public IList<NameValuePair> SortByValue(FilterSetting setting = null)
         {
-            return PrepareFilterQuery(setting).OrderBy(x => x.Value).ToList();
+            return SortBy(setting, (NameValuePair x) => x.Value);
         }
     }
 }
