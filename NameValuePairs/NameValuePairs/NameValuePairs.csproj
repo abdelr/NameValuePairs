@@ -94,6 +94,8 @@
     <Compile Include="Exceptions\NameException.cs" />
     <Compile Include="Exceptions\ValueException.cs" />
     <Compile Include="Models\MainModel.cs" />
+    <Compile Include="Repositories\INameValuePairRepository.cs" />
+    <Compile Include="Repositories\NameValuePairRepository.cs" />
     <Compile Include="Utils\RandomGenerator.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />

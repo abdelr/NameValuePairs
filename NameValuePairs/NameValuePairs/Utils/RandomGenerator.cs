@@ -29,5 +29,13 @@ namespace NameValuePairs.Utils
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[Random.Next(s.Length)]).ToArray());
         }
+
+        /// <summary>
+        /// Random boolean
+        /// </summary>
+        public static bool RandomBoolean(double threshold)
+        {
+            return Random.NextDouble() < threshold;
+        }
     }
 }
