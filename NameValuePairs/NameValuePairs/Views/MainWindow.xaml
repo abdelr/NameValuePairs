@@ -1,0 +1,57 @@
+﻿<Window x:Class="NameValuePairs.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NameValuePairs.Views"
+        xmlns:localVMs="clr-namespace:NameValuePairs.ViewModels"
+        xmlns:localModels="clr-namespace:NameValuePairs.Models"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+        md:DialogServiceViews.IsRegistered="True"
+        mc:Ignorable="d"
+        Title="{Binding Title}" Height="350" Width="525"
+        WindowState="Normal">
+
+    <Window.Resources>
+        <!-- Insert here your Data Templates -->
+        <DataTemplate x:Key="SampleTemplate">
+            <StackPanel/>
+        </DataTemplate>
+        
+    </Window.Resources>
+    <Window.InputBindings>
+        <!-- Example of Keyboard shortcuts -->
+        <KeyBinding Command="{Binding AddCmd}" Gesture="Ctrl+A" />
+        <KeyBinding Command="{Binding DeleteCmd}" Gesture="Ctrl+D" />
+        <KeyBinding Command="{Binding FilterCmd}" Gesture="Ctrl+F" />
+        <KeyBinding Command="{Binding ClearFiltersCmd}" Gesture="Ctrl+C" />
+        <KeyBinding Command="{Binding SortByNameCmd}" Gesture="Ctrl+N" />
+        <KeyBinding Command="{Binding SortByValueCmd}" Gesture="Ctrl+V" />
+        <KeyBinding Command="{Binding ExitCmd}" Gesture="Alt+F4" />
+    </Window.InputBindings>
+
+    <DockPanel>
+        <!-- File Menu -->
+        <Menu DockPanel.Dock="Top" Margin="0,0,0.4,0">
+            <MenuItem Header="Commands">
+                <MenuItem Header="Add" Command="{Binding AddCmd}" InputGestureText="Ctrl+A" />
+                <MenuItem Header="Delete" Command="{Binding DeleteCmd}" InputGestureText="Ctrl+D" />
+                <Separator />
+                <MenuItem Header="Filter" Command="{Binding FilterCmd}" InputGestureText="Ctrl+F" />
+                <MenuItem Header="Clear Filters" Command="{Binding ClearFiltersCmd}" InputGestureText="Ctrl+C" />
+                <Separator />
+                <MenuItem Header="Sort by Name" Command="{Binding SortByNameCmd}" InputGestureText="Ctrl+N" />
+                <MenuItem Header="Sort by Value" Command="{Binding SortByValueCmd}" InputGestureText="Ctrl+V" />
+                <Separator />
+                <MenuItem Header="Exit" Command="{Binding ExitCmd}" InputGestureText="Alt+F4"/>
+            </MenuItem>
+            <MenuItem Header="About" Command="{Binding ShowAboutDialogCmd}"/>
+        </Menu>
+
+        <StackPanel>
+            
+        </StackPanel>
+    </DockPanel>
+</Window>
