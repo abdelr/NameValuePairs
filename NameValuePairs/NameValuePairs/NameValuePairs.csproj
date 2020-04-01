@@ -87,8 +87,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\Constraints\INameValuePairConstraints.cs" />
+    <Compile Include="Core\Constraints\NameValuePairConstraints.cs" />
     <Compile Include="Core\Entities\NameValuePair.cs" />
+    <Compile Include="Exceptions\NameException.cs" />
+    <Compile Include="Exceptions\ValueException.cs" />
     <Compile Include="Models\MainModel.cs" />
+    <Compile Include="Utils\RandomGenerator.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
