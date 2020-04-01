@@ -1,4 +1,5 @@
 ﻿using NameValuePairs.Core.Entities;
+using NameValuePairs.Exceptions;
 
 namespace NameValuePairs.Core.Constraints
 {
@@ -18,7 +19,13 @@ namespace NameValuePairs.Core.Constraints
         /// </exception>
         public NameValuePair Match(NameValuePair target)
         {
-            throw new System.NotImplementedException();
+            target.Name = target.Name.Trim();
+            target.Value = target.Value.Trim();
+            if (!System.Text.RegularExpressions.Regex.IsMatch(target.Name, @"^[a-zA-Z0-9]+$"))
+                throw new NameException();
+            if (!System.Text.RegularExpressions.Regex.IsMatch(target.Value, @"^[a-zA-Z0-9]+$"))
+                throw new ValueException();
+            return target;
         }
     }
 }
