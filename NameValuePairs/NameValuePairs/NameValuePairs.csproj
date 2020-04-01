@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="Core\Constraints\INameValuePairConstraints.cs" />
     <Compile Include="Core\Constraints\NameValuePairConstraints.cs" />
+    <Compile Include="Core\Entities\FilterSetting.cs" />
     <Compile Include="Core\Entities\NameValuePair.cs" />
     <Compile Include="Exceptions\NameException.cs" />
     <Compile Include="Exceptions\ValueException.cs" />
