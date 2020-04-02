@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:NameValuePairs"
              Startup="Application_Startup">
     <Application.Resources>
-         
+        <local:ViewModelLocator x:Key="ViewModelLocator"/>
     </Application.Resources>
 </Application>

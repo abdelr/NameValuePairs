@@ -6,6 +6,7 @@ using System.Windows;
 using System.ComponentModel;
 using NameValuePairs.ViewModels;
 using NameValuePairs.Views;
+using NameValuePairs.DI;
 
 namespace NameValuePairs
 {
@@ -18,6 +19,9 @@ namespace NameValuePairs
         {
             Log.Info("Application Startup");
 
+            // Registering IoC
+            IocKernel.Initialize(new IocConfiguration());
+
             // For catching Global uncaught exception
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExceptionOccured);
@@ -25,7 +29,8 @@ namespace NameValuePairs
             Log.Info("Starting App");
             LogMachineDetails();
             app = new MainWindow();
-            var context = new MainViewModel();
+
+            var context = IocKernel.Get<MainViewModel>();
             app.DataContext = context;
             app.Show();
         }

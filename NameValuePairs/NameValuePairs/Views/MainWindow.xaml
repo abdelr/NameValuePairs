@@ -9,9 +9,12 @@
         xmlns:localModels="clr-namespace:NameValuePairs.Models"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         md:DialogServiceViews.IsRegistered="True"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="350" Width="525"
+        Title="{Binding Title}" 
+        Height="470" Width="450" 
+        MinHeight="470" MinWidth="450"
         WindowState="Normal">
 
     <Window.Resources>
@@ -51,7 +54,104 @@
         </Menu>
 
         <StackPanel>
-            
+            <!--Add section-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="150" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="5,5">
+                    <Label>Name/Value Pair</Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" Text="{Binding Path=PairName, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="1" Text=" = " HorizontalAlignment="Center" />
+                        <TextBox Grid.Column="2" Text="{Binding Path=PairValue, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+                </StackPanel>
+
+                <Button 
+                Content="Add" 
+                Grid.Column="1" 
+                HorizontalAlignment="Stretch" 
+                Margin="5,30,5,5" 
+                Command="{Binding AddCmd}"/>
+            </Grid>
+
+            <!--Filter section-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="150" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="5,5">
+                    <Label>Type/Value</Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox 
+                        Grid.Column="0"
+                        SelectedValue="{Binding Path=FilterType}"
+                        SelectedValuePath="Content">
+                            <ComboBoxItem IsSelected="True">Name</ComboBoxItem>
+                            <ComboBoxItem>Value</ComboBoxItem>
+                        </ComboBox>
+                        <TextBox 
+                        Grid.Column="1"
+                        Text="{Binding Path=FilterValue, UpdateSourceTrigger=PropertyChanged}" 
+                        Margin="5,0,0,0"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Button Content="Filter" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,30,5,5" Command="{Binding FilterCmd}" />
+                    <Button Content="Clear Filter" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,5,5,5" Command="{Binding ClearFiltersCmd}" />
+                </StackPanel>
+            </Grid>
+
+            <!--List section-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="150" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="5,5">
+                    <Label>Name/Value Pair</Label>
+                    <ListBox
+                    Height="235" 
+                    Margin="0,0,0,5" 
+                    SelectionMode="Extended"
+                    ItemsSource="{Binding PairList}" 
+                    IsSynchronizedWithCurrentItem="true"
+                    x:Name="DeleteList">
+                        <i:Interaction.Behaviors>
+                            <local:MultiSelectionBehavior SelectedItems="{Binding SelectedItems}" />
+                        </i:Interaction.Behaviors>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Name}" />
+                                    <TextBlock Text=" = " />
+                                    <TextBlock Text="{Binding Path=Value}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Margin="5,30,5,5">
+                    <Button Content="Sort By Name" HorizontalAlignment="Stretch" Margin="0,0,0,5" Command="{Binding SortByNameCmd}" />
+                    <Button Content="Sort By Value" HorizontalAlignment="Stretch" Margin="0,0,0,15" Command="{Binding SortByValueCmd}" />
+                    <Button Content="Delete" HorizontalAlignment="Stretch" Command="{Binding DeleteCmd}" />
+                </StackPanel>
+            </Grid>
         </StackPanel>
     </DockPanel>
 </Window>

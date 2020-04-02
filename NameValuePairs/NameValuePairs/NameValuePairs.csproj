@@ -36,11 +36,20 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="MvvmDialogs, Version=7.0.0.0, Culture=neutral, PublicKeyToken=3d3b9708589bc73e, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MvvmDialogs.7.0.0\lib\net472\MvvmDialogs.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
@@ -91,13 +100,17 @@
     <Compile Include="Core\Constraints\NameValuePairConstraints.cs" />
     <Compile Include="Core\Entities\FilterSetting.cs" />
     <Compile Include="Core\Entities\NameValuePair.cs" />
+    <Compile Include="IoC\IocConfiguration.cs" />
     <Compile Include="Exceptions\NameException.cs" />
     <Compile Include="Exceptions\ValueException.cs" />
+    <Compile Include="IocKernel.cs" />
     <Compile Include="Models\MainModel.cs" />
     <Compile Include="Repositories\INameValuePairRepository.cs" />
     <Compile Include="Repositories\NameValuePairRepository.cs" />
+    <Compile Include="Utils\MultiSelectionBehavior.cs" />
     <Compile Include="Utils\RandomGenerator.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
+    <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -113,7 +126,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
