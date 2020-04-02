@@ -143,6 +143,7 @@ namespace NameValuePairs.ViewModels
                 ResetPairList(Model.Add(new NameValuePair { Name = PairName, Value = PairValue }));
                 PairValue = "";
                 PairName = "";
+                FilterValue = "";
             }
             catch (Exception exception)
             {
