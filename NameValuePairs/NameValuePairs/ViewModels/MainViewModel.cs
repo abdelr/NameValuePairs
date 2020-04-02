@@ -117,7 +117,7 @@ namespace NameValuePairs.ViewModels
 
         #region Commands
         public ICommand AddCmd { get { return new RelayCommand(OnAdd, AddEnabled); } }
-        public ICommand DeleteCmd { get { return new RelayCommand(OnDelete, SortEnabled); } }
+        public ICommand DeleteCmd { get { return new RelayCommand(OnDelete, DeleteEnabled); } }
         public ICommand FilterCmd { get { return new RelayCommand(OnFilter, FilterEnabled); } }
         public ICommand ClearFiltersCmd { get { return new RelayCommand(OnClearFilters, FilterEnabled); } }
         public ICommand SortByNameCmd { get { return new RelayCommand(OnSortByName, SortEnabled); } }
@@ -133,6 +133,8 @@ namespace NameValuePairs.ViewModels
         private bool FilterEnabled() { return !(string.IsNullOrEmpty(FilterValue)); }
 
         private bool SortEnabled() { return PairList.Count > 0; }
+
+        private bool DeleteEnabled() { return SelectedItems.Count > 0; }
 
         private void OnAdd()
         {
